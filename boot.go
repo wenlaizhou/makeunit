@@ -41,7 +41,7 @@ func main() {
 	}
 	content := fmt.Sprintf(tpl, fmt.Sprintf("%v", name), runnable, dir)
 	err := ioutil.WriteFile(fmt.Sprintf("/usr/lib/systemd/system/%v.service", name), []byte(content), os.ModePerm)
-	exec.Command("systemctl", "daemon-reload")
+	exec.Command("systemctl", "daemon-reload").CombinedOutput()
 	if err != nil {
 		println(err.Error())
 		return
